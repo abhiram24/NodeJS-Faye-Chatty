@@ -18,14 +18,14 @@ I'm new to JS and this is my first exercise to build something simple and workin
 0) Configure Mysql with a user "root" and password as EMPTY
 1) Start Mysql Instance
 2) Create a new database by name "chatty"
-3) Import the data dump from the file "chatty_2017-03-18.sql" located under "/Users/landmark/abhiram/aff/DB" (Command to be used : mysql -u root -p  < chatty_2017-03-18.sql )
+3) Import the data dump from the file "chatty_2017-03-18.sql" located under "DB" folder (Command to be used : mysql -u root -p  < chatty_2017-03-18.sql )
 
 # Setup Instructions - NodeJS
 
-0) Copy the source from folder "aff/chatty" (I just setup on my other machine and just copy pasted the whole folder)
-1) My zip file also has package.json with the dependencies listed.
-2) Open the file "aff/chatty/routes/chatti.js" and change the Faye server IP on line #42 (Acknowledged,this is bad practice, we need to externalize it)
-3) Once done, run the server using "nodemon app.js" (This should be done under the folder "aff/chatty")
+0) Copy the source from folder "chatty" (I just setup on my other machine and just copy pasted the whole folder)
+1) My project also has package.json with the dependencies listed.
+2) Open the file "chatty/routes/chatti.js" and change the Faye server IP on line #42 (Acknowledged,this is bad practice, we need to externalize it)
+3) Once done, run the server using "nodemon app.js" (This should be done under the folder "chatty")
 4) The server is configured on 8099 (Try accessing the homepage from browser using "http://<<your_IP>>:8099/)
 
 # How to use Chatty:
@@ -40,5 +40,5 @@ I'm new to JS and this is my first exercise to build something simple and workin
 # Others:
 
 0) For every unique URL and PIN generated from user, we will see an entry on "room" table under the Mysql DB
-1) To get an initial glimpse, I have put screenshots under "/Users/landmark/abhiram/aff/docs"
-2) Readme file is also under "/Users/landmark/abhiram/aff/docs". This file have more information on few assumptions made.
+1) To get an initial glimpse, I have put screenshots under "docs"
+2) More documentation and screenshots are under "docs". This file have more information on few assumptions made.
