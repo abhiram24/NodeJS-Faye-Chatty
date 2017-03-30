@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<!-- This is the simple CSS style. Best practice is to move in a seprate file or on CDN-->
+  <style>
+  pre {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    overflow-y: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    background: #efefef;
+    border: 1px solid #777;
+  }
+  pre code {
+    padding: 10px;
+    color: #333;
+  }
+
+  .button{
+      height:50px;
+      width:100px;
+      background:skyblue;
+  }
+</style>
+
+    <script type="text/javascript" src="/chatty/client.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js'></script>
+    
+    <!-- This is a header and best pratice is to have in be in common file.-->
+    <h2> Welcome to Chatty (Using ExpressJs + Faye + Mysql) </h2>
+    
+    Your name : <input type='text' id='username'  size="35"/>
+    <br> <hr> <br>
+
+    <script>
+
+      $("document").ready(function(){
+  
+      //This is hardcoded for Faye Client. Best practice is to externalize it
+      var faye = new Faye.Client('http://192.168.1.104:8099/chatty',{timeout: 20});
+      faye.connect();
+
+        subscribeObj = faye.subscribe('/<%= id %>', function(message) {  
+        var msg = message.username + ' : ' + message.text + '\n';
+        $("#response").append(msg);
+        $("#content").val("");  
+      });
+
+      $("#say").click(function(){
+        content=$("#content").val();
+        username=$("#username").val();  
+        faye.publish('/<%= id %>', {text: content.trim(), username: username.trim()});
+      });
+
+    }); 
+
+   </script>
+   
+   <script>
+  
+    var origPin = <%= pin %>;  
+   
+    //The pin would be visible if the user is smart and does a view-source on browser
+    //This is just an MVP and best practice is put on session or validate through an API call
+    var pin = prompt("Please enter your PIN");
+    
+    if (origPin != pin)
+      {
+        window.location.replace("/");
+      }
+    </script>
+
+    Message Area:
+    <pre id='response'>
+    </pre>
+
+    <br/>
+
+    <textarea rows="6" cols="80" id='content'> </textarea>
+    <br> <br>
+    <button type="button" id='say' class="button"> Send Message</button>
+</html>

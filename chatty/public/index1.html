@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <script type="text/javascript" src="/chatty/client.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js'></script>
+    
+    Your name : <input type='text' id='username' />
+    
+    <script>
+
+      $("document").ready(function(){
+
+      var faye = new Faye.Client('http://localhost:8099/chatty',{timeout: 20});
+      faye.connect();
+
+        subscribeObj = faye.subscribe("/chatMsg", function(message) {  
+        var msg = message.username + ' : ' + message.text + '\n';
+        $("#response").append(msg);
+        $("#content").val("");  
+      });
+
+      $("#say").click(function(){
+        content=$("#content").val();
+        username=$("#username").val();  
+        faye.publish("/chatMsg", {text: content.trim(), username: username.trim()});
+      });
+    });
+    </script>
+
+    <pre id='response'>
+    </pre>
+
+    <br/>
+
+    <input type='text' id='content' />
+    <br> <br>
+    <button type="button" id='say'> Send </button>
+</html>

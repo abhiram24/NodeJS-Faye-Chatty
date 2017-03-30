@@ -1,0 +1,19 @@
+{
+  "name": "chatty",
+  "version": "1.0.0",
+  "description": "An online simple chat app ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "expressjs",
+    "nodejs"
+  ],
+  "author": "Abhiram Sampath",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
